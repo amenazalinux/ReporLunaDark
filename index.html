@@ -6,7 +6,7 @@
   <title>Correo Electrónico</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
@@ -23,14 +23,16 @@
       color: #333;
       padding-top: 30px;
       min-height: 70px;
-      border-bottom: #e8491d 4px solid;
+      border-bottom: #4CAF50 4px solid; /* Cambiado a verde */
+      position: relative;
     }
 
     header a {
-      color: #333;
+      color: #4CAF50; /* Cambiado a verde */
       text-decoration: none;
       text-transform: uppercase;
       font-size: 16px;
+      font-weight: bold;
     }
 
     header #logo {
@@ -43,6 +45,23 @@
       width: auto;
       max-width: 20%;
       height: auto;
+    }
+
+    .countdown {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: #4CAF50; /* Cambiado a verde */
+      animation: bounce 0.5s infinite alternate; /* Agregado efecto de rebote */
+    }
+
+    @keyframes bounce {
+      to {
+        transform: translate(-50%, -50%) translateY(-5px);
+      }
     }
 
     section {
@@ -73,9 +92,23 @@
       padding: 10px 0;
       text-align: center;
       clear: both;
-      position: relative; /* Añadido */
-      bottom: 0; /* Añadido */
-      width: 100%; /* Añadido */
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Estilos para el botón */
+    .green-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 18px;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 8px;
     }
   </style>
 </head>
@@ -84,28 +117,62 @@
     <div class="container">
       <div id="logo">
         <img src="https://amenazalinux.github.io/ReporLunaDark/Logonutritam.png" alt="Logo">
+        <div id="countdown" class="countdown"></div>
       </div>
     </div>
   </header>
 
   <section class="container">
-    <article>
-      <h1>Recibe un toque de Naturaleza</h1>
-      <p>¡Hola!</p>
-      <p>"¿Te gustaría disfrutar de la autenticidad de la vida y saborear un producto que es tan puro como la naturaleza misma? En Nutritam, hemos creado algo que captura esa esencia. Nutritam es la nueva Manera de iniciar bien tus mañanas recargada con energía.</p>
-      <p>Atentamente,<br>NutriTam Peru</p>
+    <article style="max-width: 100%;">
+        <h1 style="color: #4CAF50;">Recibe un toque de Naturaleza</h1>
+        <p style="font-weight: bold;">¡Hola!</p>
+        <p style="text-align: justify; font-weight: bold; color: #333;">¿Te gustaría disfrutar de la autenticidad de la vida y saborear un producto que es tan puro como la naturaleza misma? En Nutritam, hemos creado algo que captura esa esencia. Nutritam es la nueva manera de iniciar bien tus mañanas recargada con energía.</p>
+        <p style="font-weight: bold; color: #333;">Atentamente,<br>NutriTam Peru</p>
     </article>
 
     <aside>
-        <h2>Oferta Especial</h2>
-        <!-- Ajusta la ruta de la imagen según tu necesidad -->
+        <h2 style="color: #4CAF50;">Oferta Especial</h2>
         <img src="https://amenazalinux.github.io/ReporLunaDark/LOH.png" alt="Oferta Especial" style="width: 100%; max-width: 200px; height: auto; margin-top: 10px;">
-        <p>No te pierdas nuestras ofertas. ¡Aprovecha ahora!</p>
+        <p style="font-weight: bold; color: #333;">No te pierdas nuestras ofertas. ¡Aprovecha ahora!</p>
+        <a class="green-button" href="https://wa.link/xfog6x">Más Información</a>
     </aside>
   </section>
 
   <footer>
-    <p>&copy; 2023 NutriTam. Todos los derechos reservados.</p>
+    <p style="font-weight: bold;">&copy; 2023 NutriTam. Todos los derechos reservados.</p>
   </footer>
+
+  <script>
+    function startCountdown(durationSeconds) {
+      let countdownElement = document.getElementById('countdown');
+      let endTime = Date.now() + durationSeconds * 1000;
+
+      function updateCountdown() {
+        let remainingTime = endTime - Date.now();
+        let days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+        let hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+        let minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
+        let seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
+
+        days = days.toString().padStart(2, '0');
+        hours = hours.toString().padStart(2, '0');
+        minutes = minutes.toString().padStart(2, '0');
+        seconds = seconds.toString().padStart(2, '0');
+
+        countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (remainingTime <= 0) {
+          clearInterval(countdownInterval);
+          countdownElement.textContent = 'Tiempo agotado';
+        }
+      }
+
+      updateCountdown();
+
+      let countdownInterval = setInterval(updateCountdown, 1000);
+    }
+
+    startCountdown(1000000);
+  </script>
 </body>
 </html>
