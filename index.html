@@ -143,36 +143,11 @@
   </footer>
 
   <script>
-    function startCountdown(durationSeconds) {
-      let countdownElement = document.getElementById('countdown');
-      let endTime = Date.now() + durationSeconds * 1000;
+    // Elimina la función startCountdown y su llamada
+    // startCountdown(1000000);
 
-      function updateCountdown() {
-        let remainingTime = endTime - Date.now();
-        let days = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
-        let hours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
-        let minutes = Math.floor((remainingTime % (60 * 60 * 1000)) / (60 * 1000));
-        let seconds = Math.floor((remainingTime % (60 * 1000)) / 1000);
-
-        days = days.toString().padStart(2, '0');
-        hours = hours.toString().padStart(2, '0');
-        minutes = minutes.toString().padStart(2, '0');
-        seconds = seconds.toString().padStart(2, '0');
-
-        countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-        if (remainingTime <= 0) {
-          clearInterval(countdownInterval);
-          countdownElement.textContent = 'Tiempo agotado';
-        }
-      }
-
-      updateCountdown();
-
-      let countdownInterval = setInterval(updateCountdown, 1000);
-    }
-
-    startCountdown(1000000);
+    // Agrega el iframe en su lugar
+    document.getElementById('countdown').innerHTML = '<iframe width="449" height="103" src="https://w2.countingdownto.com/5125435" frameborder="0"></iframe>';
   </script>
 </body>
 </html>
