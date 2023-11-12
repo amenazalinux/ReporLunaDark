@@ -36,32 +36,19 @@
     }
 
     header #logo {
-      float: left;
-      display: inline-block;
-      margin: 0;
+      display: flex;
+      align-items: center;
     }
 
-    header #logo img {
+    header .logo-main img {
       width: auto;
-      max-width: 20%;
+      max-width: 50%; /* Puedes ajustar el porcentaje según tus necesidades */
       height: auto;
     }
 
-    .countdown {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 24px;
-      font-weight: bold;
-      color: #4CAF50; /* Cambiado a verde */
-      animation: bounce 0.5s infinite alternate; /* Agregado efecto de rebote */
-    }
-
-    @keyframes bounce {
-      to {
-        transform: translate(-50%, -50%) translateY(-5px);
-      }
+    header .additional-image {
+      width: 70%; /* Ajusta el ancho según tus necesidades */
+      height: auto;
     }
 
     section {
@@ -110,14 +97,31 @@
       cursor: pointer;
       border-radius: 8px;
     }
+
+    /* Estilos responsivos para pantallas pequeñas */
+    @media screen and (max-width: 768px) {
+      header .logo-main img {
+        max-width: 90%; /* La imagen del logo ocupará el ancho completo */
+        margin-bottom: 5px; /* Agrega un espacio entre las imágenes en pantallas pequeñas */
+      }
+
+      header .additional-image {
+        max-width: 900%; /* La imagen secundaria ocupará el ancho completo */
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <div id="logo">
-        <img src="https://amenazalinux.github.io/ReporLunaDark/Logonutritam.png" alt="Logo">
-        <div id="countdown" class="countdown"></div>
+        <!-- Logo principal -->
+        <div class="logo-main">
+          <img src="https://amenazalinux.github.io/ReporLunaDark/Logonutritam.png" alt="Logo Principal">
+        </div>
+
+        <!-- Imagen secundaria al costado del logo -->
+        <img class="additional-image" src="NutriTamvariado.png" alt="Imagen Secundaria">
       </div>
     </div>
   </header>
@@ -141,13 +145,5 @@
   <footer>
     <p style="font-weight: bold;">&copy; 2023 NutriTam. Todos los derechos reservados.</p>
   </footer>
-
-  <script>
-    // Elimina la función startCountdown y su llamada
-    // startCountdown(1000000);
-
-    // Agrega el iframe en su lugar
-    document.getElementById('countdown').innerHTML = '<iframe width="449" height="103" src="https://w2.countingdownto.com/5125435" frameborder="0"></iframe>';
-  </script>
 </body>
 </html>
